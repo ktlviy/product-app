@@ -67,7 +67,6 @@ src/
 ## 🎨 Theming
 
 - Uses a custom cyan/white theme defined in `src/index.css` with CSS variables for easy customization.
-- Dark mode supported via `.dark` class.
 - All UI components reference these variables for consistent, beautiful design.
 
 ## 🧑‍💻 Best Practices
