@@ -8,6 +8,8 @@ import NavbarSort from "./NavbarSort";
 import NavbarCategory from "./NavbarCategory";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
+import { Button } from "../ui/button";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar({
   search,
@@ -21,6 +23,8 @@ export default function Navbar({
   const [menuOpen, setMenuOpen] = useState(false);
   const isSmallScreen = useSmallScreen();
   const { user, loading: authLoading, logout } = useAuth();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchCategories();
@@ -37,14 +41,15 @@ export default function Navbar({
           <div className="flex-1">
             <NavbarSearch value={search} onChange={onSearchChange} />
           </div>
-          <button
+          <Button
             className="sm:hidden p-2 rounded-md border border-gray-200 bg-white flex items-center justify-center ml-2"
             onClick={() => setMenuOpen((open) => !open)}
             aria-label="Open filters menu"
+            variant="circle"
             style={{ height: 40 }}
           >
             <Menu size={24} />
-          </button>
+          </Button>
         </div>
         <div
           className={cn(
@@ -77,24 +82,26 @@ export default function Navbar({
               <span className="hidden sm:inline text-sm text-gray-700">
                 Welcome, {user.displayName || user.email || "User"}!
               </span>
-              <button
+              <Button
                 onClick={logout}
+                variant="outline"
                 className="px-3 py-1 rounded-md bg-gray-100 hover:bg-gray-200 text-sm border border-gray-300"
               >
                 Logout
-              </button>
+              </Button>
             </>
           ) : (
             <>
               <span className="hidden sm:inline text-sm text-gray-700">
                 Login please
               </span>
-              <a
-                href="/login"
-                className="hidden sm:inline px-3 py-1 rounded-md bg-primary text-white hover:bg-primary/90 text-sm border border-primary"
+              <Button
+                variant="outline"
+                onClick={() => navigate("/login")}
+                className="px-3 py-1 rounded-md bg-gray-100 hover:bg-gray-200 text-sm border border-gray-300"
               >
                 Login
-              </a>
+              </Button>
             </>
           )}
         </div>

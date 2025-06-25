@@ -1,5 +1,6 @@
 import type { Product } from "@/types/products";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Heart, ShoppingCart } from "lucide-react";
 
 export default function ProductCard(product: Product) {
@@ -16,18 +17,21 @@ export default function ProductCard(product: Product) {
           </span>
         )}
       </div>
-      <button className="absolute top-3 right-3 z-10 p-1 rounded-full bg-white/80 hover:bg-white shadow">
-        <Heart size={20} className="text-muted-foreground" />
-      </button>
+      <Button variant="circle" className="absolute top-3 right-3 z-10">
+        <Heart size={20} />
+      </Button>
       <div className="relative w-full  flex items-center justify-center bg-muted">
         <img
           src={images[0]}
           alt={title}
           className="max-w-[80%] max-h-[80%] object-contain rounded-lg"
         />
-        <button className="absolute bottom-3 right-3 bg-green-500 hover:bg-green-600 text-white rounded-full p-3 shadow-lg transition-colors">
+        <Button
+          variant="circle"
+          className="absolute bottom-3 right-3 bg-green-500 hover:bg-green-600 text-white"
+        >
           <ShoppingCart size={22} />
-        </button>
+        </Button>
       </div>
       <CardContent className="flex flex-col items-start gap-2 px-4 pb-4 pt-2">
         <div className="w-full line-clamp-2 text-base font-medium text-gray-900 mb-1">
